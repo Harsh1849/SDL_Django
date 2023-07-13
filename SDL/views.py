@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-import csv, json, io
-import pandas as pd
+import csv, json
 from SDL.models import Order
 
 
@@ -10,13 +9,12 @@ def index(request):
 
 def pincode_data(request, pin_number):
     csv_path = "data.csv"
-    df = pd.read_csv(csv_path)
-    df.to_json(orient='records', indent=4)
-    df.set_index("Pin", inplace=True)
-    json_data = df.to_json(orient='index', indent=4)
-    json_data = json.loads(json_data)
-
-    # print(json_data[0])
+    json_data = {}
+    with open(csv_path, 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            pin = row.pop("Pin")
+            json_data[pin] = row
 
     try:
         pincode_json = json_data[pin_number]
