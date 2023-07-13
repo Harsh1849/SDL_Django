@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container container_width main_bg_color">
+        <form id="calculateForm" class="pt-3 mt-3">
+            <div id="myAlert" class="alert alert-danger hide_element">
+                <strong>Pincode is Incorrect or Empty!! Please enter correct Pincode.</strong>
+            </div>
+
+            <div class="form-row form-group">
+                <div class="col">
+                    <label for="pincode">Pincode:</label>
+                    <input type="tel" minlength="6" maxlength="6" id="pincode" class="form-control" required />
+                </div>
+                <div class="col">
+                    <label for="weight">Weight (Kg):</label>
+                    <input type="number" id="weight" class="form-control" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div id="is_ODA" class="hide_element">
+                    <button class="font-weight-bold btn btn-outline-danger shadow non_clickable">ODA</button>
+                    <span class="text-danger font-weight-light"> *Pincode Out of Delivery Area.</span>
+                </div>
+            </div>
+
+            <div class="form-row form-group">
+                <div class="col">
+                    <label for="length">Length (cm):</label>
+                    <input type="number" id="length" class="form-control" required />
+                </div>
+                <div class="col">
+                    <label for="height">Height (cm):</label>
+                    <input type="number" id="height" class="form-control" required />
+                </div>
+                <div class="col">
+                    <label for="width">Width (cm):</label>
+                    <input type="number" id="width" class="form-control" required />
+                </div>
+            </div>
+
+            <div class="form-group hide_element" id="dimensionWeight">
+                <label>Weight by Dimension (Kg):</label> <i class=font-weight-light>(Length * Height * Width) / 5000</i><br>
+                <input tabindex="-1" type="number" class="form-control" id="dimensionWeightInput" readonly>
+            </div>
+
+            <button type="submit" id="calculateButton" class="btn btn-primary mb-3">Calculate Charge</button>
+        </form>
+
+        <span id="resultDiv" class="mb-5 pb-3 text-center justify-content-center hide_element rounded">
+            <i class="font-weight-light text-danger">
+                <span id="minimum_weight" class="hide_element new_line"></span>
+            </i>
+            
+            <div>
+                <span class="font-weight-bold">Courier Charges:</span>
+                <span id="charge"></span>
+            </div>
+            
+            <div>
+                <span class="font-weight-bold">ODA Charge:</span>
+                <span id="ODA_charge"></span>
+            </div>
+            <hr>
+
+            <h4 class="font-weight-bold new_line" id="finalAmount"></h4>
+
+            <a href="/place_order">
+                <button type="button" class="btn btn-primary">Place Order</button>
+            </a>
+        </span>
+    </div>
+{% endblock %}
+
+{% block js_script %}
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

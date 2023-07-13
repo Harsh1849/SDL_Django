@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    <title>Weight and Charge Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container justify-content-center">
+                <a tabindex="-1" href='/'><h2 class="navbar-brand">Speed Delivery Logistics</h2></a>
+            </div>
+        </nav>
+    </header>
+    <br>
+
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+    
+    <footer class="text-lg-start bg-dark text-white mt-auto">
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            
+            <div class="container text-center text-md-start">
+                <div class="row">
+                    <div class="col-md col-lg col-xl mx-auto">
+                        <h5 class="text-uppercase font-weight-bold">OUR SERVICES</h5>
+                        <h6 class="font-weight-light">B2B Service</h6>
+                        <h6 class="font-weight-light">B2C Service</h6>
+                        <h6 class="font-weight-light">Amazon, Flipkart Self Order</h6>
+                        <h6 class="font-weight-light">Private Website Orders</h6>
+                    </div>
+
+                    <div class="col-md col-lg col-xl mx-auto">
+                        <h5 class="text-uppercase font-weight-bold">Contact Us</h5>
+                        <h6 class="font-weight-light">+91 74340 28012</h6>
+                        <h6 class="font-weight-light"><span class="new_line">Sr. No. 35/3, Ground Floor, Shop No. 1-2, Near Suman Pratik, Oppo. Vrindavan Farm, Dabholi Road Surat - 395004</span></h6>
+                        <!-- <h6 class="font-weight-light"> info@example.com </h6> -->
+                        <!-- <h6 class="font-weight-light">+ 01 234 567 89</h6> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="justify-content-center p-4 navbar navbar-dark bg-dark">
+            © 2023 Speed Delivery Logistics. All rights reserved.
+        </div>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    {% block js_script %} {% endblock %}
+</body>
+
+</html>

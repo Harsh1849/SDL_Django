@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container container_width main_bg_color">
+        <form id="orderForm" action="{% url 'thank_you' %}" method="post" class="p-3 my-3">
+            {% csrf_token %}
+            <div class="form-row form-group">
+                <div class="col">
+                    <label for="order_weight">Weight:</label>
+                    <input type="number" id="order_weight" name="order_weight" class="form-control" tabindex="-1" readonly />
+                </div>
+
+                <div class="col">
+                    <label for="order_charge">Amount:</label>
+                    <input type="number" id="order_charge" name="order_charge" class="form-control" tabindex="-1" readonly />
+                </div>
+
+                <div class="col">
+                    <label for="order_pincode">Pincode:</label>
+                    <input type="number" id="order_pincode" name="order_pincode" class="form-control" tabindex="-1" readonly />
+                </div>
+            </div>
+
+            <div class="form-row form-group">
+                <div class="col">
+                    <label for="order_courier">Courier Charge:</label>
+                    <input type="number" id="order_courier" name="order_courier" class="form-control" tabindex="-1" readonly />
+                </div>
+                <div class="col">
+                    <label for="order_ODA">ODA charge:</label>
+                    <input type="number" id="order_ODA" name="order_ODA" class="form-control" tabindex="-1" readonly />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="order_total_amount">Total Amount = Courier Charge + ODA Charges</label>
+                <input type="number" name="order_total_amount" id="order_total_amount" class="form-control" tabindex="-1" readonly />
+            </div>
+
+            <h4>Sender's Details</h4>
+            <div class="form-row form-group">
+                <div class="col">
+                    <input placeholder="First name" type="text" name="sender_fname" id="sender_fname" class="form-control" required  />
+                </div>
+                <div class="col">
+                    <input placeholder="Last name" type="text" name="sender_lname" id="sender_lname" class="form-control" required  />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input placeholder="Phone Number" type="number" name="sender_pnumber" id="sender_pnumber" class="form-control" required  />
+            </div>
+
+            <div class="form-group">
+                <input placeholder="Pickup Location" type="textarea" class="form-control" name="sender_address" id="sender_address" required  />
+            </div>
+
+            <h4>Receiver's Details</h4>
+            <div class="form-row form-group">
+                <div class="col">
+                    <input placeholder="First name" type="text" name="receiver_fname" id="receiver_fname" class="form-control" required  />
+                </div>
+                <div class="col">
+                    <input placeholder="Last name" type="text" name="receiver_lname" id="receiver_lname" class="form-control" required  />
+                </div>
+            </div>
+            <div class="form-group">
+                <input placeholder="Phone Number" type="number" name="receiver_pnumber" id="receiver_pnumber" class="form-control" required  />
+            </div>
+
+            <div class="form-group">
+                <input placeholder="Drop Location" type="textarea" class="form-control" name="receiver_address" id="receiver_address" required  />
+            </div>
+
+            <button type="submit" class="btn btn-primary mb-3">Place Order</button>
+        </form>                        
+    </div>
+{% endblock %}
+
+{% block js_script %}
+    <script src="{% static 'js/order.js' %}"></script>
+{% endblock %}
