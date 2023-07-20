@@ -1,0 +1,80 @@
+/* Add custom styles to the datatable */
+#datatable_wrapper {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.is-oda-true {
+    background-color: red;
+    color: white; /* You can adjust the text color to improve visibility */
+}
+
+#datatable th, #datatable td {
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+#datatable th:nth-child(1), #datatable td:nth-child(1) {
+    width: 150px; /* Set the width for the first column (Date & Time) */
+}
+
+#datatable th:nth-child(2), #datatable td:nth-child(2) {
+    width: 100px; /* Set the width for the second column (Pincode) */
+}
+
+#datatable_filter {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+#datatable_filter input[type="search"] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+#datatable_length label {
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+#datatable_paginate{
+    text-align: left;
+    padding-top: 10px;
+}
+
+#datatable_paginate .pagination {
+    justify-content: center;
+}
+
+#datatable_paginate .paginate_button {
+    margin: 0 2px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+}
+
+#datatable_paginate .paginate_button.active {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+}
+
+#datatable_paginate .paginate_button:hover {
+    background-color: #e9ecef;
+}
+
+@media (max-width: 575.98px) {
+    #datatable_wrapper {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #datatable_filter input[type="search"] {
+        width: 100%;
+    }
+
+    #datatable_paginate .pagination {
+        display: block;
+    }
+}
