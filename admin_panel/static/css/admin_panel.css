@@ -1,0 +1,49 @@
+/* Add custom styles to the datatable */
+
+header, footer {
+    /* opacity: 0.3; */
+    background-color: #708090;
+}
+
+.is-oda-true {
+    background-color: rgb(210, 88, 88);
+    color: white; /* You can adjust the text color to improve visibility */
+}
+
+.is-oda-false {
+    background-color: rgb(100, 185, 134);
+    color: white; /* You can adjust the text color to improve visibility */
+}
+
+th {
+    background-color: lightcyan;
+}
+
+td {
+    border: 0.5px solid black;
+}
+
+tr.is-filtered {
+    background-color: #f0f0f0;
+}
+
+.table-responsive td {
+    white-space: nowrap;
+}
+
+.table-responsive .table {
+    width: 100%;
+    max-width: 100%;
+}
+
+.sender-column {
+    background-color: lightblue; /* Change the color to your preferred color */
+}
+
+.receiver-column {
+    background-color: lightpink; /* Change the color to your preferred color */
+}
+
+.total-amount-column {
+    background-color: lightgreen; /* Change the color to your preferred color */
+}

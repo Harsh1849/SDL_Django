@@ -62,7 +62,7 @@ header, footer {
 @media only screen and (min-width: 993px) and (max-width: 1200px) {
     /* CSS rules for large devices */
     .container_width {
-        width: 40%;
+        width: 50%;
     }
 }
 
@@ -70,14 +70,6 @@ header, footer {
 @media only screen and (min-width: 1201px) {
     /* CSS rules for extra large devices */
     .container_width {
-        width: 40%;
+        width: 50%;
     }
 }
-  
-
-/* .background_image {
-    background-image: url('3.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-} */

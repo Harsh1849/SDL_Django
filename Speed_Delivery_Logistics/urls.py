@@ -14,5 +14,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('pincode/<str:pin_number>/', views.pincode_data, name='pincode_data'),
     path('place_order/', views.place_order, name='place_order'),
-    path('thank_you/', views.thank_you, name='thank_you'),
+    path('save_data_db/', views.save_data_db, name='save_data_db'),
 ]

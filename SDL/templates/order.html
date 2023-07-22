@@ -2,17 +2,17 @@
 {% load static %}
 {% block content %}
     <div class="container container_width main_bg_color">
-        <form id="orderForm" action="{% url 'thank_you' %}" method="post" class="p-3 my-3">
+        <form id="orderForm" action="{% url 'save_data_db' %}" method="post" class="p-3 my-3">
             {% csrf_token %}
             <div class="form-row form-group">
                 <div class="col">
-                    <label for="order_weight">Weight:</label>
+                    <label for="order_weight">Total Weight: (Kg)</label>
                     <input type="number" id="order_weight" name="order_weight" class="form-control" tabindex="-1" readonly />
                 </div>
 
                 <div class="col">
-                    <label for="order_charge">Amount:</label>
-                    <input type="number" id="order_charge" name="order_charge" class="form-control" tabindex="-1" readonly />
+                    <label for="order_per_kg_charge">Per Kg Charge: (Rs)</label>
+                    <input type="number" id="order_per_kg_charge" name="order_per_kg_charge" class="form-control" tabindex="-1" readonly />
                 </div>
 
                 <div class="col">
@@ -23,18 +23,18 @@
 
             <div class="form-row form-group">
                 <div class="col">
-                    <label for="order_courier">Courier Charge:</label>
+                    <label for="order_courier">Courier Charge: (Rs)</label>
                     <input type="number" id="order_courier" name="order_courier" class="form-control" tabindex="-1" readonly />
                 </div>
                 <div class="col">
-                    <label for="order_ODA">ODA charge:</label>
+                    <label for="order_ODA">ODA charge: (Rs)</label>
                     <input type="number" id="order_ODA" name="order_ODA" class="form-control" tabindex="-1" readonly />
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="order_total_amount">Total Amount = Courier Charge + ODA Charges</label>
-                <input type="number" name="order_total_amount" id="order_total_amount" class="form-control" tabindex="-1" readonly />
+                <label for="order_finalCharge">Final Charge (Rs) = Courier Charge + ODA Charges</label>
+                <input type="number" name="order_finalCharge" id="order_finalCharge" class="form-control" tabindex="-1" readonly />
             </div>
 
             <h4>Sender's Details</h4>

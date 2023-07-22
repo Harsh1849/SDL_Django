@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-import csv, json
+import csv, json, datetime
 from SDL.models import Order
 
 
@@ -20,7 +20,8 @@ def pincode_data(request, pin_number):
         pincode_json = json_data[pin_number]
         return JsonResponse(pincode_json)
     except:
-        return HttpResponse("Invalid Pincode!!")
+        pincode_json = {}
+        return JsonResponse(pincode_json)
 
 
 
@@ -28,12 +29,15 @@ def place_order(request):
     return render(request, 'order.html')
 
 def thank_you(request):
+    return render(request, 'thank_you.html')
+
+def save_data_db(request):
     if request.method == "POST":
         order_weight = request.POST.get("order_weight")
-        order_charge = request.POST.get("order_charge")
+        order_charge = request.POST.get("order_per_kg_charge")
         order_courier = request.POST.get("order_courier")
         order_ODA = request.POST.get("order_ODA")
-        order_total_amount = request.POST.get("order_total_amount")
+        order_finalCharge = request.POST.get("order_finalCharge")
         order_pincode = request.POST.get("order_pincode")
         sender_fname = request.POST.get("sender_fname")
         sender_lname = request.POST.get("sender_lname")
@@ -52,12 +56,13 @@ def thank_you(request):
         print(order_weight)
 
         order = Order(
+            date_time=datetime.datetime.now(),
             weight=order_weight,
             per_kg_charge=order_charge,
             courier_charge=order_courier,
             ODA_charge=order_ODA,
             is_ODA=is_ODA,
-            total_amount=order_total_amount,
+            total_amount=order_finalCharge,
             pincode=order_pincode,
             sender_fname=sender_fname,
             sender_lname=sender_lname,
@@ -70,6 +75,6 @@ def thank_you(request):
         )
         order.save()        
         
-        return render(request, "thank_you.html")
+        return render(request, 'thank_you.html')
     else:
         return HttpResponse("Only POST requests are allowed...")
