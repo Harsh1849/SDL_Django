@@ -7,20 +7,20 @@ header, footer {
 
 .is-oda-true {
     background-color: rgb(210, 88, 88);
-    color: white; /* You can adjust the text color to improve visibility */
+    color: white;
 }
 
 .is-oda-false {
     background-color: rgb(100, 185, 134);
-    color: white; /* You can adjust the text color to improve visibility */
+    color: white;
 }
 
 th {
-    background-color: lightcyan;
+    background-color: rgb(145, 184, 184);
 }
 
 td {
-    border: 0.5px solid black;
+    border: 0.5px solid white;
 }
 
 tr.is-filtered {
@@ -45,5 +45,6 @@ tr.is-filtered {
 }
 
 .total-amount-column {
-    background-color: lightgreen; /* Change the color to your preferred color */
+    background-color: rgb(5, 248, 5); /* Change the color to your preferred color */
+    font-weight: bold;
 }

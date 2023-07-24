@@ -41,7 +41,6 @@ INSTALLED_APPS = [
 
     'SDL',
     'admin_panel',
-    'datatables',
 ]
 
 MIDDLEWARE = [

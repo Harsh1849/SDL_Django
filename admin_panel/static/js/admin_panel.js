@@ -19,10 +19,10 @@ $(document).ready(function () {
                 aValue = new Date(aValue).getTime();
                 bValue = new Date(bValue).getTime();
             }
-            return sortType === "asc" ? aValue - bValue : bValue - aValue;
+            return sortType === "desc" ? aValue - bValue : bValue - aValue;
         });
         // Toggle the sort type for the next click
-        $(this).data("sort-type", sortType === "asc" ? "desc" : "asc");
+        $(this).data("sort-type", sortType === "desc" ? "asc" : "desc");
         $("tbody").empty().append(rows);
     });
 

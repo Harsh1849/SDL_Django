@@ -3,6 +3,7 @@ from django.db import models
 class Order(models.Model):
     date_time = models.DateTimeField(auto_now=True)
     weight = models.FloatField()
+    quantity = models.IntegerField()
     per_kg_charge = models.FloatField()
     courier_charge = models.FloatField()
     ODA_charge = models.FloatField()

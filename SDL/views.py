@@ -34,6 +34,7 @@ def thank_you(request):
 def save_data_db(request):
     if request.method == "POST":
         order_weight = request.POST.get("order_weight")
+        order_quantity = request.POST.get("order_quantity")
         order_charge = request.POST.get("order_per_kg_charge")
         order_courier = request.POST.get("order_courier")
         order_ODA = request.POST.get("order_ODA")
@@ -58,6 +59,7 @@ def save_data_db(request):
         order = Order(
             date_time=datetime.datetime.now(),
             weight=order_weight,
+            quantity=order_quantity,
             per_kg_charge=order_charge,
             courier_charge=order_courier,
             ODA_charge=order_ODA,

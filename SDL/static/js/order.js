@@ -6,6 +6,9 @@ window.addEventListener('load', (event) => {
     const finalCharge = localStorage.getItem('finalCharge');
     const pincode = localStorage.getItem('pincode');
     const per_kg_charge = localStorage.getItem('per_kg_charge');
+    const quantity = localStorage.getItem('quantity');
+
+    console.log("fetch", per_kg_charge);
 
     // Update modal fields with retrieved data
     document.getElementById('order_weight').value = weight;
@@ -14,4 +17,5 @@ window.addEventListener('load', (event) => {
     document.getElementById('order_finalCharge').value = finalCharge;
     document.getElementById('order_pincode').value = pincode;
     document.getElementById('order_per_kg_charge').value = per_kg_charge;
+    document.getElementById('order_quantity').value = quantity;
 });
