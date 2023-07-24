@@ -8,7 +8,7 @@ def index(request):
     return render(request, 'index.html')
 
 def pincode_data(request, pin_number):
-    csv_path = "data.csv"
+    csv_path = "/home/SpeedDeliveryLogistics/SDL_Django/data.csv"
     json_data = {}
     with open(csv_path, 'r') as file:
         reader = csv.DictReader(file)
