@@ -8,7 +8,6 @@ window.addEventListener('load', (event) => {
     const per_kg_charge = localStorage.getItem('per_kg_charge');
     const quantity = localStorage.getItem('quantity');
 
-    console.log("fetch", per_kg_charge);
 
     // Update modal fields with retrieved data
     document.getElementById('order_weight').value = weight;

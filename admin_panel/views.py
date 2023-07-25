@@ -5,7 +5,7 @@ from django.utils import timezone
 
 @login_required
 def admin_panel(request):
-    data = Order.objects.all()
+    data = Order.objects.all().order_by('-date_time')
     
     current_datetime = timezone.now()
     return render(request, 'admin_panel.html', context={'context': data, 'current_datetime': current_datetime})

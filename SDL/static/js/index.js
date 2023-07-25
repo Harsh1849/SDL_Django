@@ -102,79 +102,102 @@ document.getElementById("quantity").addEventListener("input", function () {
 
     // Create and append new input fields based on quantity
     for (let i = 1; i <= quantity; i++) {
-        const fieldGroup = document.createElement("div");
-        fieldGroup.classList.add("form-row", "form-group");
-        
+      
         // mimimum charges if weight below minimum weight
         const minimum_weightFieldGroup = document.createElement("div");
         minimum_weightFieldGroup.classList.add("form-group", "hide_element", "new_line", "text-danger");
         minimum_weightFieldGroup.setAttribute('id',`minimum_weight_${i}`)
 
         const minimum_weightInput = document.createElement("div");
-        minimum_weightInput.classList.add("col");
+        minimum_weightInput.classList.add("col-md");
         minimum_weightInput.innerHTML = `
             <span id="minimum_weight_${i}"></span>
         `;
         minimum_weightFieldGroup.appendChild(minimum_weightInput);
 
-        // input fields for courier no, weight, length, height, width
+
+        // courier number display
         const courierGroup = document.createElement("div");
         courierGroup.classList.add("text-primary");
+
         const courier_no = document.createElement("div");
         courier_no.innerHTML = `
             <h4>Courier ${i}</h4>
         `;
         courierGroup.appendChild(courier_no);
 
+
+        // input fields for courier no, weight, length, height, width
+        const fieldGroup = document.createElement("div");
+        fieldGroup.classList.add("form-row", "form-group");
+
         const weightInput = document.createElement("div");
-        weightInput.classList.add("col");
+        weightInput.classList.add("col-md");
         weightInput.innerHTML = `
             <label for="weight_${i}">Weight (Kg):</label>
-            <input type="number" id="weight_${i}" class="form-control" required />
+            <input type="text" id="weight_${i}" class="form-control" required />
         `;
         fieldGroup.appendChild(weightInput);
 
         const lengthInput = document.createElement("div");
-        lengthInput.classList.add("col");
+        lengthInput.classList.add("col-md");
         lengthInput.innerHTML = `
             <label for="length_${i}">Length (cm) :</label>
-            <input type="number" id="length_${i}" class="form-control" required />
+            <input type="text" id="length_${i}" class="form-control" required />
         `;
         fieldGroup.appendChild(lengthInput);
 
         const heightInput = document.createElement("div");
-        heightInput.classList.add("col");
+        heightInput.classList.add("col-md");
         heightInput.innerHTML = `
             <label for="height_${i}">Height (cm) :</label>
-            <input type="number" id="height_${i}" class="form-control" required />
+            <input type="text" id="height_${i}" class="form-control" required />
         `;
         fieldGroup.appendChild(heightInput);
 
         const widthInput = document.createElement("div");
-        widthInput.classList.add("col");
+        widthInput.classList.add("col-md");
         widthInput.innerHTML = `
             <label for="width_${i}">Width (cm) :</label>
-            <input type="number" id="width_${i}" class="form-control" required />
+            <input type="text" id="width_${i}" class="form-control" required />
         `;
         fieldGroup.appendChild(widthInput);
 
+
         // input field to display weight by dimensions
         const dynamicWeightByDimensionFieldGroup = document.createElement("div");
-        dynamicWeightByDimensionFieldGroup.classList.add("form-group", "hide_element");
+        dynamicWeightByDimensionFieldGroup.classList.add("form-row", "form-group", "hide_element");
         dynamicWeightByDimensionFieldGroup.setAttribute('id',`dimensionWeight_${i}`)
-
+        
         const dimensionWeightInput = document.createElement("div");
+        dimensionWeightInput.classList.add("col-md");
         dimensionWeightInput.innerHTML = `
-            <label>Weight by Dimension (Kg):</label> <i class=font-weight-light>(Length * Height * Width) / 5000</i><br>
+            <label>Weight by Dimension (Kg): <i class=font-weight-light>(Length * Height * Width) / 5000</i></label> 
             <input tabindex="-1" type="number" class="form-control" id="dimensionWeightInput_${i}" readonly>
-            <hr>
         `;
         dynamicWeightByDimensionFieldGroup.appendChild(dimensionWeightInput);
+
+        // input field to display weight by dimensions
+        const finalAmountFieldGroup = document.createElement("div");
+        finalAmountFieldGroup.classList.add("container");
+
+        const finalAmountInput = document.createElement("div");
+        finalAmountInput.classList.add("d-flex", "justify-content-center");
+        finalAmountInput.innerHTML = `
+            <button tabindex="-1" class="hide_element bg-info text-light btn non_clickable" id="courier_charge_element_${i}"> </button>
+        `;
+        finalAmountFieldGroup.appendChild(finalAmountInput);
+
+        const hr_element = document.createElement("div");
+        hr_element.innerHTML = `<hr>`;
+        finalAmountFieldGroup.appendChild(hr_element);
+
 
         dynamicInputFieldsContainer.appendChild(courierGroup);
         dynamicInputFieldsContainer.appendChild(minimum_weightFieldGroup);
         dynamicInputFieldsContainer.appendChild(fieldGroup);
         dynamicInputFieldsContainer.appendChild(dynamicWeightByDimensionFieldGroup);
+        dynamicInputFieldsContainer.appendChild(finalAmountFieldGroup);
     }
 });
 
@@ -198,17 +221,17 @@ function calculateCharge() {
         
         for (let i = 1; i <= quantity; i++) {
             const weightInput = document.getElementById(`weight_${i}`);
-            const weight = parseFloat(weightInput.value);
+            const weight = Math.ceil(weightInput.value);
             const lengthInput = document.getElementById(`length_${i}`);
-            const length = parseFloat(lengthInput.value);
+            const length = Math.ceil(lengthInput.value);
             const heightInput = document.getElementById(`height_${i}`);
-            const height = parseFloat(heightInput.value);
+            const height = Math.ceil(heightInput.value);
             const widthInput = document.getElementById(`width_${i}`);
-            const width = parseFloat(widthInput.value);
+            const width = Math.ceil(widthInput.value);
             const dimension_weight_element = document.getElementById(`dimensionWeight_${i}`);
             const dimension_weight_input_element = document.getElementById(`dimensionWeightInput_${i}`);
+            const courier_charge_element = document.getElementById(`courier_charge_element_${i}`);
         
-            console.log("Items Data:");
             
             const weight_dimension = Math.ceil((length * height * width) / 5000);
 
@@ -227,20 +250,24 @@ function calculateCharge() {
 
             const [zone_charge, minimum_zone_weight, minimum_zone_charge] = find_zone_by_pincode(new_weight, pincode_details);
 
+
+            courier_charge_element.classList.remove("hide_element");
             const Minimum_WeightElement = document.getElementById(`minimum_weight_${i}`);
             if (new_weight < Math.ceil(minimum_zone_weight)) {
                 Minimum_WeightElement.classList.remove("hide_element");
                 Minimum_WeightElement.textContent = `*Below ${Math.ceil(minimum_zone_weight)}Kg Fixed charges applies.`;
                 var per_kg_charge = 0;
                 var total_amount = minimum_zone_charge;
+
+                courier_charge_element.textContent = `Courier Charge: ${total_amount}/- Rs (Fixed) `;
             } else {
                 Minimum_WeightElement.classList.add("hide_element");
                 var per_kg_charge = zone_charge;
                 var total_amount = new_weight * per_kg_charge;
-            }
 
-            console.log("per_kg_charge", per_kg_charge);
-            console.log("total_amount", total_amount);
+                courier_charge_element.textContent = `Courier Charge: ${total_amount}/- Rs`;
+            }
+            
 
             const is_ODA = pincode_details["ODA"];
             if (is_ODA === 'TRUE') {
@@ -257,9 +284,8 @@ function calculateCharge() {
 
         const Final_amount_with_ODA = Final_amount + ODA_charge;
         const totalElement = document.getElementById("finalAmount");
-        totalElement.textContent = `Rs ${Final_amount_with_ODA}/-`;
+        totalElement.textContent = `${Final_amount_with_ODA}`;
 
-        console.log(Final_amount_with_ODA)
 
         const resultDiv = document.getElementById("resultDiv");
         resultDiv.classList.remove("hide_element");
