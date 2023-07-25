@@ -79,7 +79,11 @@
                                 <td>{{data.per_kg_charge}}</td>
                                 <td>{{data.courier_charge}}</td>
                                 <td class="{% if data.ODA_charge %} is-oda-true {% else %} is-oda-false {% endif %}">{{data.ODA_charge}}</td>
-                                <td tabindex="-1" class="{% if data.is_ODA %} is-oda-true {% else %} is-oda-false {% endif %}">{{data.is_ODA}}</td>
+                                <td tabindex="-1">
+                                    <div class="{% if data.is_ODA %} btn btn-danger {% else %} btn btn-success {% endif %}">
+                                        {{data.is_ODA}}
+                                    </div>
+                                </td>
                                 <td class="total-amount-column">{{data.total_amount}}</td>
                             </tr>
                         {% endfor %}

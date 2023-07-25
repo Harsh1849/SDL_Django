@@ -6,13 +6,11 @@ header, footer {
 }
 
 .is-oda-true {
-    background-color: rgb(210, 88, 88);
-    color: white;
+    color: rgb(255, 0, 0);
 }
 
 .is-oda-false {
-    background-color: rgb(100, 185, 134);
-    color: white;
+    color: rgb(100, 185, 134);
 }
 
 th {
@@ -20,21 +18,18 @@ th {
 }
 
 td {
+    min-width: 150px;
+    max-width: 200px;
     border: 0.5px solid white;
+    white-space: normal !important; 
+    word-wrap: break-word;  
 }
+
 
 tr.is-filtered {
     background-color: #f0f0f0;
 }
 
-.table-responsive td {
-    white-space: nowrap;
-}
-
-.table-responsive .table {
-    width: 100%;
-    max-width: 100%;
-}
 
 .sender-column {
     background-color: lightblue; /* Change the color to your preferred color */
@@ -45,6 +40,6 @@ tr.is-filtered {
 }
 
 .total-amount-column {
-    background-color: rgb(5, 248, 5); /* Change the color to your preferred color */
+    background-color: rgb(112, 189, 137); /* Change the color to your preferred color */
     font-weight: bold;
 }
